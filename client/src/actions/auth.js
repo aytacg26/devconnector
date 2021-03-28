@@ -106,6 +106,8 @@ export const login = (email, password) => {
   };
 };
 
-export const logout = () => ({
-  type: LOGOUT,
-});
+//Logout / clear profile
+export const logout = () => (dispatch) =>
+  dispatch({
+    type: LOGOUT,
+  });
