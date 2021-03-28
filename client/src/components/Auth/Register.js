@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
@@ -13,6 +13,13 @@ const Register = (props) => {
   });
 
   const dispatch = useDispatch();
+  const authState = useSelector((state) => ({
+    token: state.authReducer.token,
+    isAuthenticated: state.authReducer.isAuthenticated,
+    user: state.authReducer.user,
+  }));
+
+  const { token, isAuthenticated, user } = authState;
 
   const { name, email, password, password2 } = formData;
 
@@ -27,6 +34,10 @@ const Register = (props) => {
       dispatch(register({ name, email, password }));
     }
   };
+
+  if (token && isAuthenticated && user) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
