@@ -1,5 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { login } from '../../actions/auth';
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
@@ -8,14 +10,28 @@ const Login = (props) => {
   });
 
   const { email, password } = formData;
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => ({
+    token: state.authReducer.token,
+    isAuthenticated: state.authReducer.isAuthenticated,
+    user: state.authReducer.user,
+  }));
+
+  const { token, isAuthenticated, user } = authState;
+
+  useEffect(() => {
+    if (isAuthenticated && token && user) {
+      console.log('Success');
+    }
+  }, [isAuthenticated, token, user]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    console.log('Success');
+    //Login action method will be called here
+    dispatch(login(email, password));
   };
 
   return (
