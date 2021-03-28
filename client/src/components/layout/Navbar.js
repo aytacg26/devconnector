@@ -1,7 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/auth';
 
-const Navbar = () => {
+const Navbar = ({ history }) => {
+  const authState = useSelector((state) => ({
+    isAuthenticated: state.authReducer.isAuthenticated,
+    token: state.authReducer.token, //no need to bring this here
+    user: state.authReducer.user,
+    loading: state.authReducer.loading,
+  }));
+
+  const dispatch = useDispatch();
+
+  const { isAuthenticated, token, user, loading } = authState;
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const authLinks = (
+    <ul>
+      {/* <li>
+        <Link to='/'></Link>
+      </li>
+      <li>
+        <Link to='/'></Link>
+      </li> */}
+      <li>
+        <a onClick={handleLogout} href='#!'>
+          <i className='fas fa-sign-out-alt'></i>{' '}
+          <span className='hide-sm'>Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
+  const gusetLinks = (
+    <ul>
+      <li>
+        <Link to='/developers'>Developers</Link>
+      </li>
+      <li>
+        <Link to='/register'>Register</Link>
+      </li>
+      <li>
+        <Link to='/login'>Login</Link>
+      </li>
+    </ul>
+  );
+
   return (
     <nav className='navbar bg-dark'>
       <h1>
@@ -9,17 +56,8 @@ const Navbar = () => {
           <i className='fas fa-code'></i> DevConnector
         </Link>
       </h1>
-      <ul>
-        <li>
-          <Link to='/developers'>Developers</Link>
-        </li>
-        <li>
-          <Link to='/register'>Register</Link>
-        </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-      </ul>
+
+      {isAuthenticated && !loading ? authLinks : gusetLinks}
     </nav>
   );
 };
