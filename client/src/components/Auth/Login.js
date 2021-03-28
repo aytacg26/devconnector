@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/auth';
 
 const Login = (props) => {
@@ -19,12 +19,6 @@ const Login = (props) => {
 
   const { token, isAuthenticated, user } = authState;
 
-  useEffect(() => {
-    if (isAuthenticated && token && user) {
-      console.log('Success');
-    }
-  }, [isAuthenticated, token, user]);
-
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -33,6 +27,11 @@ const Login = (props) => {
     //Login action method will be called here
     dispatch(login(email, password));
   };
+
+  //no need to check all, just isAuthenticated is enough!!
+  if (isAuthenticated && token && user) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
