@@ -4,7 +4,7 @@ export const errorMessage = (
   message = 'Internal Server Error'
 ) => {
   if (Array.isArray(message)) {
-    return res.status(status).json({ errors: errors.array() });
+    return res.status(status).json({ errors: message });
   }
 
   return res.status(status).json({ errors: [{ msg: message }] });
