@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { createProfile } from '../../actions/profile';
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ history }) => {
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -35,6 +36,8 @@ const CreateProfile = (props) => {
     instagram,
   } = formData;
 
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -42,6 +45,11 @@ const CreateProfile = (props) => {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProfile(formData, history));
   };
 
   return (
@@ -52,7 +60,7 @@ const CreateProfile = (props) => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className='form'>
+      <form className='form' onSubmit={handleSubmit}>
         <div className='form-group'>
           <select name='status' value={status} onChange={handleChange}>
             <option value='0'>* Select Professional Status</option>
@@ -218,4 +226,4 @@ const CreateProfile = (props) => {
   );
 };
 
-export default CreateProfile;
+export default withRouter(CreateProfile);
