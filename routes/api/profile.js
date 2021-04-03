@@ -314,7 +314,7 @@ profileRouter.put(
     [
       check('school', 'School is required').not().isEmpty(),
       check('degree', 'Degree is required').not().isEmpty(),
-      check('fieldOfStudy', 'Field of study is required').not().isEmpty(),
+      check('fieldofstudy', 'Field of study is required').not().isEmpty(),
       check('from', 'From date is required').not().isEmpty(),
     ],
   ],
@@ -330,7 +330,7 @@ profileRouter.put(
     const {
       school,
       degree,
-      fieldOfStudy,
+      fieldofstudy,
       from,
       to,
       current,
@@ -341,7 +341,7 @@ profileRouter.put(
     const newEducation = {
       school,
       degree,
-      fieldOfStudy,
+      fieldofstudy,
       from,
       to,
       current,
