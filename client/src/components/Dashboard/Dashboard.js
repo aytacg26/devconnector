@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,7 @@ const Dashboard = () => {
           </p>
           {profile !== null ? (
             <Fragment>
-              This user has profile, we will add profile components here to
-              present profile data of user...
+              <DashboardActions />
             </Fragment>
           ) : (
             <Fragment>
