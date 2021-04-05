@@ -109,7 +109,7 @@ export const login = (email, password) => {
 };
 
 //Logout / clear profile
-export const logout = () => (dispatch) => {
+export const logout = (history) => (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE,
   });
@@ -117,4 +117,6 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+
+  history.push('/');
 };
