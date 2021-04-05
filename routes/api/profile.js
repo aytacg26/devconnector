@@ -3,6 +3,7 @@ import { errorMessage, completedMessage } from '../../messages/messages.js';
 import User from '../../models/User.js';
 import { check, validationResult } from 'express-validator';
 import UserProfile from '../../models/Profile.js';
+import Post from '../../models/Post.js';
 import request from 'request';
 import config from 'config';
 
@@ -181,7 +182,8 @@ profileRouter.get('/user/:user_id', async (req, res) => {
  */
 profileRouter.delete('/', authMiddleware, async (req, res) => {
   try {
-    // @TODO - remove users' posts
+    //Remove user posts (make sure to delete posts first, then profile and at the end accout (User))
+    await Post.deleteMany({ user: req.user.id });
     //This will remove profile
     await UserProfile.findOneAndRemove({ user: req.user.id });
 
