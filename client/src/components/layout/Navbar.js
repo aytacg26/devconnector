@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/auth';
 
@@ -16,11 +16,14 @@ const Navbar = ({ history }) => {
   const { isAuthenticated, token, user, loading } = authState;
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout(history));
   };
 
   const authLinks = (
     <ul>
+      <li>
+        <Link to='/profiles'>Developers</Link>
+      </li>
       <li>
         <Link to='/dashboard' title='Dashboard - Profile'>
           <i className='fas fa-user'></i>{' '}
@@ -38,7 +41,7 @@ const Navbar = ({ history }) => {
   const gusetLinks = (
     <ul>
       <li>
-        <Link to='/developers'>Developers</Link>
+        <Link to='/profiles'>Developers</Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
@@ -62,4 +65,4 @@ const Navbar = ({ history }) => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
