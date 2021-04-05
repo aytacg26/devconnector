@@ -2,5 +2,6 @@
   "mongoURI": "MongoDB URI",
   "jwtSecretToken": "jwt TOKEN",
   "githubClientId": "GitHub Client ID",
-  "githubSecret": "GitHub Secret Key"
+  "githubSecret": "GitHub Secret Key",
+  "comment": "Just create a default.json file inside config folder and put the keys above into it, for github client Id and github secret key check GitHub API"
 }
