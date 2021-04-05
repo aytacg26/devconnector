@@ -3,3 +3,4 @@ default.json
 config/default.json
 config/default_donotsend.txt
 config/*.json
+config/db.js
