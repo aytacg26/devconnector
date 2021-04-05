@@ -49,7 +49,9 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         profile: null,
+        profiles: [],
         repos: [],
+        error: {},
       };
 
     case PROFILE_ERROR:
