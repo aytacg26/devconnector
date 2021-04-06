@@ -79,6 +79,7 @@ profileRouter.post(
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
+    if (githubusername) profileFields.githubusername = githubusername;
 
     if (skills && !Array.isArray(skills)) {
       profileFields.skills = skills.split(',').map((skill) => skill.trim());
