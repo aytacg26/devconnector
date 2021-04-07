@@ -16,8 +16,6 @@ const GithubRepos = ({ githubusername }) => {
     dispatch(getGitHubRepos(githubusername));
   }, []);
 
-  console.log(repos);
-
   return (
     <div className='profile-github'>
       <h2 className='text-primary my-1'>
