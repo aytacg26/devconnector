@@ -25,6 +25,11 @@ const Navbar = ({ history }) => {
         <Link to='/profiles'>Developers</Link>
       </li>
       <li>
+        <Link to='/posts' title='Posts from Developers'>
+          Posts
+        </Link>
+      </li>
+      <li>
         <Link to='/dashboard' title='Dashboard - Profile'>
           <i className='fas fa-user'></i>{' '}
           <span className='hide-sm'>Dashboard</span>
