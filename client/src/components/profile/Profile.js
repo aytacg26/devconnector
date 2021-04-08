@@ -1,4 +1,4 @@
-import React, { Fargment, Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
@@ -21,11 +21,11 @@ const Profile = ({ match }) => {
   const { user, profile, loading, isAuth } = profileState;
   const id = match.params.id;
 
-  console.log(profile);
-
   useEffect(() => {
     //We will get Id from link
     dispatch(getProfileById(id));
+
+    //eslint-disable-next-line
   }, [id]);
 
   if (loading || profile === null) {
