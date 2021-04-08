@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://aytacg26:97Ay345897TaC10711453GuLeY@devconnector.rbu5w.mongodb.net/DevConnect?retryWrites=true&w=majority",
+  "jwtSecretToken": "mySecretToken14531071aytac",
+  "githubClientId": "8588c37cdd1b979bea1f",
+  "githubSecret": "946c067ca6982248a6b3cb17c5d14d9e9cb1332b"
+}
