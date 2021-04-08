@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import PostItem from './PostItem';
+import PostForm from './PostForm';
 import Spinner from '../layout/Spinner';
 
 const Posts = () => {
@@ -15,6 +16,8 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(getPosts());
+
+    //eslint-disable-next-line
   }, []);
 
   if (loading || !posts) {
@@ -27,7 +30,7 @@ const Posts = () => {
       <p className='lead'>
         <i className='fas fa-user'></i> Welcome to the community
       </p>
-      {/**POST FORM */}
+      <PostForm />
       {posts.map((post) => (
         <PostItem key={post._id} post={post} />
       ))}
