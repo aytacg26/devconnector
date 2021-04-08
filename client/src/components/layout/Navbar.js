@@ -13,7 +13,7 @@ const Navbar = ({ history }) => {
 
   const dispatch = useDispatch();
 
-  const { isAuthenticated, token, user, loading } = authState;
+  const { isAuthenticated, loading } = authState;
 
   const handleLogout = () => {
     dispatch(logout(history));
